@@ -1,0 +1,11 @@
+348;jablko;1.5
+566;cebula;0.5
+566;cebula;0.5
+566;cebula;0.5
+348;jablko;1.5
+348;jablko;1.5
+348;jablko;1.5
+348;jablko;1.5
+348;jablko;1.5
+235;gruszka;2.0
+420;pomidor;0.0
