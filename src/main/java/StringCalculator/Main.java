@@ -8,7 +8,7 @@ public class Main {
         JFrame frame = new JFrame("String Calculator");
         frame.setSize(600, 750);
         frame.setLayout(new BorderLayout());
-        frame.add(new LetterPanel(), BorderLayout.NORTH);
+        frame.add(new LetterPanel(), BorderLayout.CENTER);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
