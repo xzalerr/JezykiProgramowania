@@ -15,7 +15,7 @@ public class LetterPanel extends JPanel {
     private boolean isUpper = false;
     private ArrayList<JButton> buttons;
     private static String typedIn = "";
-    private int operation = -1;
+    private int operation = 0;
     private Timer timer;
     public LetterPanel() {
         setLayout(new GridBagLayout());
@@ -145,6 +145,28 @@ public class LetterPanel extends JPanel {
         add(btnDivide, gbc);
 
         JButton btnEquals = new JButton("=");
+        btnEquals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(operation==1) {
+                    String[] parts = typedIn.split("\\+");
+                    typedIn = parts[0] + parts[1];
+                    refresh(textField);
+                    operation = 0;
+                } else if(operation==2) {
+                    String[] parts = typedIn.split("-");
+                    typedIn = typedIn.replace("-", "");
+                    typedIn = typedIn.replace(parts[1], "");
+                    refresh(textField);
+                    operation = 0;
+                } else if(operation==3) {
+                    //TODO add dividing operation
+                } else {
+                    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(LetterPanel.this);
+                    JOptionPane.showMessageDialog(parentFrame, "Nie podałeś działania, jakie chcesz wykonać.");
+                }
+            }
+        });
         gbc.gridy = 3;
         add(btnEquals, gbc);
 
