@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+//TODO make a seperate class for operations and seperate ActionListeners
 public class LetterPanel extends JPanel {
     private static final String[][] buttonTexts = {
             {"abc", "def", "ghi"},
@@ -160,7 +161,10 @@ public class LetterPanel extends JPanel {
                     refresh(textField);
                     operation = 0;
                 } else if(operation==3) {
-                    //TODO add dividing operation
+                    String[] parts = typedIn.split("/");
+                    typedIn = longestCommonSubstring(parts[0], parts[1]);
+                    refresh(textField);
+                    operation = 0;
                 } else {
                     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(LetterPanel.this);
                     JOptionPane.showMessageDialog(parentFrame, "Nie podałeś działania, jakie chcesz wykonać.");
@@ -180,5 +184,32 @@ public class LetterPanel extends JPanel {
     }
     public String[] getLetters(JButton btn) {
         return btn.getText().split("");
+    }
+    public String longestCommonSubstring(String str1, String str2) {
+        int n = str1.length();
+        int m = str2.length();
+        int max = 0;
+        int index = 0;
+        int[][] allLengths = new int[n+1][m+1];
+        StringBuilder lcs = new StringBuilder();
+        for(int i = 0; i <= n; i++) {
+            for(int j = 0; j <= m; j++) {
+                if(i == 0 || j == 0) {
+                    allLengths[i][j] = 0;
+                } else if(str1.charAt(i-1) == str2.charAt(j-1)) {
+                    allLengths[i][j] = allLengths[i-1][j-1] + 1;
+                    if(allLengths[i][j] > max) {
+                        max = allLengths[i][j];
+                        index = i;
+                    }
+                } else {
+                    allLengths[i][j] = 0;
+                }
+            }
+        }
+        for(int i = index-max; i < index; i ++) {
+            lcs.append(str1.charAt(i));
+        }
+        return lcs.toString();
     }
 }
