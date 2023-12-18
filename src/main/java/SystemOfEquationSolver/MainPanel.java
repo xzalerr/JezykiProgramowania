@@ -45,6 +45,7 @@ public class MainPanel extends JPanel {
 
         JButton btnSolve = new JButton("Rozwiąż");
         JLabel lblSolution = new JLabel("Tutaj pojawi się rozwiązanie.", SwingConstants.CENTER);
+        lblSolution.setPreferredSize(new Dimension(600, 300));
         btnSolve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

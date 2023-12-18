@@ -52,6 +52,7 @@ public class LetterPanel extends JPanel {
                             public void actionPerformed(ActionEvent e) {
                                 if(System.currentTimeMillis() - lastClick >= 1000) {
                                     typedIn+=letter;
+                                    refresh(textField);
                                 }
                             }
                         });
