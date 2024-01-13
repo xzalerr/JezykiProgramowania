@@ -10,7 +10,7 @@ public class Main {
     static ArrayList<Double> usedAngles;
     public static void main(String[] args) {
         MovementPanel movementPanel = new MovementPanel();
-        circles = createCircles(20, movementPanel);
+        circles = createCircles(10, movementPanel);
         colorCircles();
         selectAngles();
         SliderPanel sliderPanel = new SliderPanel(circles);
@@ -60,16 +60,19 @@ public class Main {
     }
 
     private static boolean isAngleTooClose(double newAngle) {
-        for (double angle : usedAngles) {
-            double angleDifference = Math.abs(newAngle - angle);
-            double fullRotation = 2 * Math.PI;
+        double fullRotation = 2 * Math.PI;
 
-            if (angleDifference < 0.15 || (fullRotation - angleDifference) < 0.15) {
+        for (double angle : usedAngles) {
+            double angleDifference = Math.abs(newAngle - angle) % fullRotation;
+            double minAngleDifference = 0.2;
+
+            if (angleDifference <= minAngleDifference || (fullRotation - angleDifference) <= minAngleDifference) {
                 return true;
             }
         }
         return false;
     }
+
 
     private static void colorCircles() {
         float interval = (float) 360 / circles.size();

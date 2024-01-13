@@ -8,6 +8,7 @@ public class MovementPanel extends JPanel {
     private int centerY;
     private final int radius = 200;
 
+
     public MovementPanel() {
         setPreferredSize(new Dimension(500, 500));
     }
