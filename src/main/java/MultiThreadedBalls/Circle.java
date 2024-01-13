@@ -29,7 +29,7 @@ public class Circle extends Thread {
             move();
             draw();
             try {
-                Thread.sleep(100/speed);
+                Thread.sleep(150/speed);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -43,7 +43,7 @@ public class Circle extends Thread {
             this.yBefore = this.y;
             this.x = (int) (movementPanel.getCenterX() + radius * Math.cos(angle));
             this.y = (int) (movementPanel.getCenterY() + radius * Math.sin(angle));
-            angle += 0.01 * speed;
+            angle += 0.01*speed;
 
             for (Circle otherCircle : circles) {
                 if (otherCircle != this) {
