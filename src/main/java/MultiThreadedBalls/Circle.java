@@ -29,7 +29,7 @@ public class Circle extends Thread {
             move();
             draw();
             try {
-                Thread.sleep(150/speed);
+                Thread.sleep(300/speed);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
