@@ -17,8 +17,8 @@ public class Circle extends Thread {
     public Circle(MovementPanel movementPanel, ArrayList<Circle> circles) {
         this.color = Color.BLACK;
         this.movementPanel = movementPanel;
-        Random rd = new Random();
-        this.speed = rd.nextInt(5) +1;
+        Random rn = new Random();
+        this.speed = rn.nextInt(5)+1;
         this.angle = 0;
         this.circles = circles;
     }

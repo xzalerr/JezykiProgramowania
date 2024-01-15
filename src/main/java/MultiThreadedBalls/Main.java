@@ -10,7 +10,7 @@ public class Main {
     static ArrayList<Double> usedAngles;
     public static void main(String[] args) {
         MovementPanel movementPanel = new MovementPanel();
-        circles = createCircles(10, movementPanel);
+        circles = createCircles(20, movementPanel);
         colorCircles();
         selectAngles();
         SliderPanel sliderPanel = new SliderPanel(circles);
@@ -21,6 +21,7 @@ public class Main {
 
         frame.add(movementPanel, BorderLayout.CENTER);
         frame.add(sliderPanel, BorderLayout.SOUTH);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
@@ -29,7 +30,7 @@ public class Main {
         }
     }
 
-    private static ArrayList<Circle> createCircles(int n, MovementPanel mp) {
+    public static ArrayList<Circle> createCircles(int n, MovementPanel mp) {
         ArrayList<Circle> circlesCreated = new ArrayList<>();
         for(int i = 0; i < n; i++) {
             circlesCreated.add(new Circle(mp, circlesCreated));
@@ -40,18 +41,15 @@ public class Main {
     public static void selectAngles() {
         Random rd = new Random();
         usedAngles = new ArrayList<>();
-
         for (int i = 0; i < circles.size(); i++) {
             double selectedAngle;
             do {
                 selectedAngle = rd.nextDouble() * 360.0;
                 selectedAngle = Math.toRadians(selectedAngle);
-
             } while (isAngleTooClose(selectedAngle));
 
             usedAngles.add(selectedAngle);
         }
-
         int index = 0;
         for (Circle circle : circles) {
             circle.setAngle(usedAngles.get(index));
@@ -59,22 +57,18 @@ public class Main {
         }
     }
 
-    private static boolean isAngleTooClose(double newAngle) {
+    public static boolean isAngleTooClose(double newAngle) {
         double fullRotation = 2 * Math.PI;
-
         for (double angle : usedAngles) {
             double angleDifference = Math.abs(newAngle - angle) % fullRotation;
             double minAngleDifference = 0.2;
-
             if (angleDifference <= minAngleDifference || (fullRotation - angleDifference) <= minAngleDifference) {
                 return true;
             }
         }
         return false;
     }
-
-
-    private static void colorCircles() {
+    public static void colorCircles() {
         float interval = (float) 360 / circles.size();
         Color[] colors = new Color[circles.size()];
         int i = 0;
@@ -89,4 +83,5 @@ public class Main {
             i++;
         }
     }
+
 }
